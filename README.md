@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lendly — Library of Things
+
+A modern web application for managing community lending libraries. Share tools, kitchen gear, electronics, camping equipment, and more with your neighbors.
+
+## Why Library of Things?
+
+Community lending libraries are an underserved vertical with real market demand. Lendly makes running one so effortless that any community can do it. Three AI-powered features target the three biggest pain points: discovering what you need, listing items without friction, and handling returns fairly.
+
+## Tech Stack
+
+- **Next.js 16** with App Router
+- **TypeScript** throughout
+- **Prisma ORM** with SQLite (local) / Turso (production)
+- **NextAuth.js v5** for authentication
+- **Tailwind CSS v4** + **shadcn/ui** components
+- **Lucide React** icons
+- Deployed on **Vercel**
+
+## AI Features (Mocked for MVP)
+
+1. **Job-to-Be-Done Search** — Type what you need to *do* (e.g., "refinish hardwood floors") and get curated item bundles
+2. **Photo-to-Listing** — Upload a photo and AI auto-fills the listing form with name, description, category, deposit, and care instructions
+3. **AI Condition Report** — During return processing, AI compares before/after photos and generates a structured damage assessment with deposit recommendations
+
+> These features use realistic mock data for the MVP. Production would integrate Claude API for real AI analysis.
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Clone and install
+git clone https://github.com/YOUR_USERNAME/lendly.git
+cd lendly
+npm install
+
+# Set up environment
+cp .env.example .env
+
+# Run database migration and seed
+npx prisma migrate dev
+npx tsx prisma/seed.ts
+
+# Start dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Demo Accounts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Name | Email | Role |
+|------|-------|------|
+| Sophie Martin | sophie@lendly.demo | Admin |
+| James Chen | james@lendly.demo | Member |
+| Priya Sharma | priya@lendly.demo | Member |
+| Marcus Johnson | marcus@lendly.demo | Member |
+| Ava Tremblay | ava@lendly.demo | Member |
 
-## Learn More
+Click any demo account on the login page to sign in instantly.
 
-To learn more about Next.js, take a look at the following resources:
+## Environment Variables
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```env
+DATABASE_URL="file:./dev.db"
+AUTH_SECRET="your-secret-here"
+AUTH_TRUST_HOST=true
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Optional: Google OAuth
+GOOGLE_CLIENT_ID=""
+GOOGLE_CLIENT_SECRET=""
 
-## Deploy on Vercel
+# Optional: Turso for production
+TURSO_DATABASE_URL=""
+TURSO_AUTH_TOKEN=""
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Roadmap (v2)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Stripe integration for deposit handling
+- Email notifications (due date reminders, return confirmations)
+- Waitlist/reservation system
+- Image upload (S3/Cloudflare R2)
+- Mobile app (React Native)
+- Real AI integration via Claude API
