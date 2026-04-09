@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import { format } from "date-fns";
 import { prisma } from "@/lib/prisma";
@@ -97,13 +96,10 @@ export default async function ItemDetailPage({
           {/* Image */}
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border">
             {item.imageUrl ? (
-              <Image
+              <img
                 src={item.imageUrl}
                 alt={item.name}
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
+                className="absolute inset-0 h-full w-full object-cover"
               />
             ) : (
               <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/10 via-secondary to-accent/20">

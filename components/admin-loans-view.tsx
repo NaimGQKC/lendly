@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { format } from "date-fns";
 import { Package } from "lucide-react";
 
@@ -165,12 +164,10 @@ function LoanTable({
                 <div className="flex items-center gap-2">
                   <div className="relative h-8 w-8 flex-shrink-0 overflow-hidden rounded bg-muted">
                     {loan.item.imageUrl ? (
-                      <Image
+                      <img
                         src={loan.item.imageUrl}
                         alt={loan.item.name}
-                        fill
-                        className="object-cover"
-                        sizes="32px"
+                        className="absolute inset-0 h-full w-full object-cover"
                       />
                     ) : (
                       <div className="flex h-full w-full items-center justify-center">

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -29,15 +28,14 @@ interface ItemCardProps {
 const statusConfig: Record<string, { color: string; label: string }> = {
   AVAILABLE: { color: "bg-green-500", label: "Available" },
   CHECKED_OUT: { color: "bg-amber-500", label: "Checked out" },
-  RESERVED: { color: "bg-amber-500", label: "Reserved" },
-  MAINTENANCE: { color: "bg-red-500", label: "Maintenance" },
+  NEEDS_REPAIR: { color: "bg-red-500", label: "Needs Repair" },
   REMOVED: { color: "bg-gray-400", label: "Removed" },
 };
 
 function conditionVariant(condition: string) {
   switch (condition) {
     case "NEW":
-    case "LIKE_NEW":
+    case "EXCELLENT":
       return "default" as const;
     case "GOOD":
       return "secondary" as const;
@@ -61,12 +59,10 @@ export function ItemCard({ item, showOwner = false }: ItemCardProps) {
         {/* Image */}
         <div className="relative aspect-[4/3] w-full overflow-hidden rounded-t-xl">
           {item.imageUrl ? (
-            <Image
+            <img
               src={item.imageUrl}
               alt={item.name}
-              fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/10 via-secondary to-accent/20">

@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
-import Image from "next/image";
 import { Camera, Upload } from "lucide-react";
 
 interface PhotoUploadProps {
@@ -58,11 +57,10 @@ export function PhotoUpload({ onUpload, isLoading = false }: PhotoUploadProps) {
         <div className="relative mb-4">
           {preview && (
             <div className="relative mx-auto mb-4 h-32 w-32 overflow-hidden rounded-lg">
-              <Image
+              <img
                 src={preview}
                 alt="Uploaded photo"
-                fill
-                className="object-cover"
+                className="absolute inset-0 h-full w-full object-cover"
               />
             </div>
           )}
@@ -114,11 +112,10 @@ export function PhotoUpload({ onUpload, isLoading = false }: PhotoUploadProps) {
 
       {preview ? (
         <div className="relative mx-auto mb-4 h-32 w-32 overflow-hidden rounded-lg">
-          <Image
+          <img
             src={preview}
             alt="Uploaded photo"
-            fill
-            className="object-cover"
+            className="absolute inset-0 h-full w-full object-cover"
           />
         </div>
       ) : (

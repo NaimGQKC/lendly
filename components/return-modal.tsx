@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import { toast } from "sonner";
 import { Loader2, Camera, Package, Sparkles } from "lucide-react";
 
@@ -139,12 +138,10 @@ export function ReturnModal({ loan, open, onOpenChange }: ReturnModalProps) {
           <div className="flex items-center gap-3 rounded-lg border p-3">
             <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded bg-muted">
               {loan.item.imageUrl ? (
-                <Image
+                <img
                   src={loan.item.imageUrl}
                   alt={loan.item.name}
-                  fill
-                  className="object-cover"
-                  sizes="48px"
+                  className="absolute inset-0 h-full w-full object-cover"
                 />
               ) : (
                 <div className="flex h-full w-full items-center justify-center">
@@ -170,12 +167,10 @@ export function ReturnModal({ loan, open, onOpenChange }: ReturnModalProps) {
               </p>
               <div className="relative aspect-square overflow-hidden rounded-lg border bg-muted">
                 {loan.item.imageUrl ? (
-                  <Image
+                  <img
                     src={loan.item.imageUrl}
                     alt="Before"
-                    fill
-                    className="object-cover"
-                    sizes="200px"
+                    className="absolute inset-0 h-full w-full object-cover"
                   />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center">
@@ -193,12 +188,10 @@ export function ReturnModal({ loan, open, onOpenChange }: ReturnModalProps) {
                 onClick={() => setAfterUploaded(true)}
               >
                 {afterUploaded && loan.item.imageUrl ? (
-                  <Image
+                  <img
                     src={loan.item.imageUrl}
                     alt="After"
-                    fill
-                    className="object-cover"
-                    sizes="200px"
+                    className="absolute inset-0 h-full w-full object-cover"
                   />
                 ) : (
                   <div className="flex h-full w-full flex-col items-center justify-center gap-1 text-muted-foreground/50">

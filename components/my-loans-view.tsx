@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { formatDistanceToNow } from "date-fns";
 import { AlertTriangle, ArrowRightLeft, Package } from "lucide-react";
 
@@ -94,12 +93,10 @@ function LoanCard({
         {/* Item image */}
         <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-muted">
           {loan.item.imageUrl ? (
-            <Image
+            <img
               src={loan.item.imageUrl}
               alt={loan.item.name}
-              fill
-              className="object-cover"
-              sizes="64px"
+              className="absolute inset-0 h-full w-full object-cover"
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center">
