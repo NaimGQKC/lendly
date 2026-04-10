@@ -1,6 +1,5 @@
 import type { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import Google from "next-auth/providers/google";
 
 export const authConfig: NextAuthConfig = {
   providers: [
@@ -14,14 +13,6 @@ export const authConfig: NextAuthConfig = {
         return null;
       },
     }),
-    ...(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET
-      ? [
-          Google({
-            clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-          }),
-        ]
-      : []),
   ],
   session: { strategy: "jwt" as const },
   pages: {

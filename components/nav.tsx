@@ -22,7 +22,6 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
 import {
   Sheet,
@@ -66,7 +65,7 @@ export function Nav() {
           </Button>
           {user && (
             <>
-              <Button variant="ghost" size="sm" render={<Link href="/loans" />}>
+              <Button variant="ghost" size="sm" render={<Link href="/my-loans" />}>
                 <BookOpen data-icon="inline-start" className="size-4" />
                 My Loans
               </Button>
@@ -101,22 +100,16 @@ export function Nav() {
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" sideOffset={8}>
-                <DropdownMenuLabel className="font-normal">
-                  <div className="flex flex-col gap-0.5">
-                    <p className="text-sm font-medium">{user.name}</p>
-                    <p className="text-xs text-muted-foreground">
-                      {user.email}
-                    </p>
-                  </div>
-                </DropdownMenuLabel>
+                <div className="px-1.5 py-1">
+                  <p className="text-sm font-medium">{user.name}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {user.email}
+                  </p>
+                </div>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem render={<Link href="/loans" />}>
+                <DropdownMenuItem render={<Link href="/my-loans" />}>
                   <BookOpen className="size-4" />
                   My Loans
-                </DropdownMenuItem>
-                <DropdownMenuItem render={<Link href="/listings" />}>
-                  <Package className="size-4" />
-                  My Listings
                 </DropdownMenuItem>
                 {isAdmin && (
                   <DropdownMenuItem render={<Link href="/admin" />}>
@@ -167,7 +160,7 @@ export function Nav() {
                 {user && (
                   <>
                     <Link
-                      href="/loans"
+                      href="/my-loans"
                       className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium hover:bg-muted"
                       onClick={() => setMobileOpen(false)}
                     >
@@ -181,14 +174,6 @@ export function Nav() {
                     >
                       <PlusCircle className="size-4" />
                       List an Item
-                    </Link>
-                    <Link
-                      href="/listings"
-                      className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium hover:bg-muted"
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      <Package className="size-4" />
-                      My Listings
                     </Link>
                     {isAdmin && (
                       <Link

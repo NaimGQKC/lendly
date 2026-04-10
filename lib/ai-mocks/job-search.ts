@@ -91,9 +91,14 @@ const TASK_VERBS = ["fix", "build", "make", "cook", "repair", "clean", "set up",
 
 export function isJobQuery(query: string): boolean {
   const words = query.trim().split(/\s+/);
-  if (words.length > 4) return true;
+  if (words.length >= 3) return true;
   const lower = query.toLowerCase();
-  return TASK_VERBS.some((verb) => lower.includes(verb));
+  if (TASK_VERBS.some((verb) => lower.includes(verb))) return true;
+  // Check if query matches any job mapping keywords
+  const queryLower = query.toLowerCase();
+  return JOB_MAPPINGS.some((m) =>
+    m.keywords.some((kw) => queryLower.includes(kw))
+  );
 }
 
 export function findJobMatches(query: string): JobMatch | null {
