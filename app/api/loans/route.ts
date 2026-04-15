@@ -7,7 +7,7 @@ export async function GET(request: Request) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const role = (session.user as any).role;
+  const role = (session.user as { role?: string }).role;
   const { searchParams } = new URL(request.url);
   const status = searchParams.get("status") || "";
 

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
+/* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-explicit-any */
 const { PrismaLibSql } = require("@prisma/adapter-libsql");
 const { PrismaClient } = require("../lib/generated/prisma/client.js");
 

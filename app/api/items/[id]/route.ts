@@ -38,7 +38,7 @@ export async function PATCH(
     return Response.json({ error: "Item not found" }, { status: 404 });
   }
 
-  const role = (session.user as any).role;
+  const role = (session.user as { role?: string }).role;
   if (item.ownerId !== session.user.id && role !== "ADMIN") {
     return Response.json({ error: "Forbidden" }, { status: 403 });
   }
@@ -81,7 +81,7 @@ export async function DELETE(
     return Response.json({ error: "Item not found" }, { status: 404 });
   }
 
-  const role = (session.user as any).role;
+  const role = (session.user as { role?: string }).role;
   if (item.ownerId !== session.user.id && role !== "ADMIN") {
     return Response.json({ error: "Forbidden" }, { status: 403 });
   }
